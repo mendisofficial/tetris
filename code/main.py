@@ -1,4 +1,10 @@
 from settings import *
+from sys import exit
+
+# components
+from game import Game
+from score import Score
+from preview import Preview
 
 class Main:
     def __init__(self):
@@ -7,6 +13,11 @@ class Main:
         self.desktop_surface = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
         self.clock = pygame.time.Clock()
         pygame.display.set_caption('Tetris')
+
+        # components
+        self.game = Game()
+        self.score = Score()
+        self.preview = Preview()
 
     def run(self):
         while True:
@@ -18,6 +29,11 @@ class Main:
 
             # display
             self.desktop_surface.fill(GRAY)
+
+            # components
+            self.game.run()
+            self.score.run()
+            self.preview.run()
 
             # updateing the game
             pygame.display.update()
